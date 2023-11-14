@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Update Finding</h1>
+<form action="index.php?route=findings&action=update" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="{{ finding.id }}">
+    <input type="hidden" name="current_proofOfConcept" value="{{ finding.proofOfConcept }}">
+
+    <div class="form-group py-3">
+        <label for="asset_name">Nama asset:</label>
+        <select id="asset_name" name="asset_name" class="form-control" required>
+            <option value="polibatam.ac.id" {% if finding.asset_name == 'polibatam.ac.id' %} selected {% endif %}>Polibatam</option>
+            <option value="sid.polibatam.ac.id" {% if finding.asset_name == 'sid.polibatam.ac.id' %} selected {% endif %}>SID</option>
+            <option value="sim.polibatam.ac.id" {% if finding.asset_name == 'sim.polibatam.ac.id' %} selected {% endif %}>SILAM</option>
+            <option value="helpdesk.polibatam.ac.id" {% if finding.asset_name == 'helpdesk.polibatam.ac.id' %} selected {% endif %}>Helpdesk</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" name="title" class="form-control" value="{{ finding.title }}">
+    </div>
+    
+    <div class="form-group py-3">
+        <label for="description">Description:</label>
+        <textarea name="description" class="form-control" rows="4" required>{{ finding.description }}</textarea>
+    </div>
+    
+    <div class="form-group py-3">
+        <label for="severity">Severity:</label>
+        <select id="severity" name="severity" class="form-control" >
+            <option value="Critical" {% if finding.severity == 'Critical' %} selected {% endif %}>Critical</option>
+            <option value="High" {% if finding.severity == 'High' %} selected {% endif %}>High</option>
+            <option value="Medium" {% if finding.severity == 'Medium' %} selected {% endif %}>Medium</option>
+            <option value="Low" {% if finding.severity == 'Low' %} selected {% endif %}>Low</option>
+        </select>
+    </div>
+
+    <div class="form-group py-3">
+        <label for="proofOfConcept">Proof of Concept:</label>
+        <input type="file" name="proofOfConcept" class="form-control-file" accept=".txt,.pdf,.docx,.zip">
+    </div>    
+
+    <div class="form-group py-3">
+        <label for="poc_video_url">POC Video URL: (opsional)</label>
+        <input type="text" name="poc_video_url" class="form-control" value="{{ finding.poc_video_url }}">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Update Finding</button>
+</form>
+{% endblock %}

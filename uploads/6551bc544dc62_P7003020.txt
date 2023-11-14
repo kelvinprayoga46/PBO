@@ -1,0 +1,578 @@
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.24-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [movieindustry11b]> select M.title, M.year, S.name, S.address from movie M JOIN studio S ON M.studioname = S.name;  
++--------------------------------+------+------------------------------+----------------------------------------------+
+| title                          | year | name                         | address                                      |
++--------------------------------+------+------------------------------+----------------------------------------------+
+| The Good, the Bad and the Ugly | 1966 | Arturo Gonzales Producciones | Spain                                        |
+| The Green Mile                 | 1999 | Castle Rock Entertainment    | Burbank, California, USA                     |
+| The Shawshank Redemption       | 1994 | Castle Rock Entertainment    | Burbank, California, USA                     |
+| Milk                           | 2008 | Focus Features               | Oxford House, London, United Kingdom         |
+| Pulp Fiction                   | 1994 | Miramax Films                | Cambridge, Massachusetts, USA                |
+| Se7en                          | 1995 | New Line Cinema              | Robertson Blvd, Los Angeles, California, USA |
+| Forrest Gump                   | 1994 | Paramount Pictures           | Hollywood, California, USA                   |
+| The Godfather                  | 1972 | Paramount Pictures           | Hollywood, California, USA                   |
+| The Godfather: Part II         | 1974 | Paramount Pictures           | Hollywood, California, USA                   |
+| Apollo 13                      | 1995 | Universal Pictures           | Universal City, California, USA              |
+| Schindler List                 | 1993 | Universal Pictures           | Universal City, California, USA              |
+| Casablanca                     | 1942 | Warner Bros. Pictures        | Burbank, California, USA                     |
+| Inception                      | 2010 | Warner Bros. Pictures        | Burbank, California, USA                     |
+| Mystic Rivers                  | 2003 | Warner Bros. Pictures        | Burbank, California, USA                     |
+| The Maltese Falcon             | 1941 | Warner Bros. Pictures        | Burbank, California, USA                     |
++--------------------------------+------+------------------------------+----------------------------------------------+
+15 rows in set (0.003 sec)
+
+MariaDB [movieindustry11b]> select M.title, M.year, S.name, S.address from movie M JOIN studio S ON M.studioname = S.name ORDER BY M.title ASC;
++--------------------------------+------+------------------------------+----------------------------------------------+
+| title                          | year | name                         | address                                      |
++--------------------------------+------+------------------------------+----------------------------------------------+
+| Apollo 13                      | 1995 | Universal Pictures           | Universal City, California, USA              |
+| Casablanca                     | 1942 | Warner Bros. Pictures        | Burbank, California, USA                     |
+| Forrest Gump                   | 1994 | Paramount Pictures           | Hollywood, California, USA                   |
+| Inception                      | 2010 | Warner Bros. Pictures        | Burbank, California, USA                     |
+| Milk                           | 2008 | Focus Features               | Oxford House, London, United Kingdom         |
+| Mystic Rivers                  | 2003 | Warner Bros. Pictures        | Burbank, California, USA                     |
+| Pulp Fiction                   | 1994 | Miramax Films                | Cambridge, Massachusetts, USA                |
+| Schindler List                 | 1993 | Universal Pictures           | Universal City, California, USA              |
+| Se7en                          | 1995 | New Line Cinema              | Robertson Blvd, Los Angeles, California, USA |
+| The Godfather                  | 1972 | Paramount Pictures           | Hollywood, California, USA                   |
+| The Godfather: Part II         | 1974 | Paramount Pictures           | Hollywood, California, USA                   |
+| The Good, the Bad and the Ugly | 1966 | Arturo Gonzales Producciones | Spain                                        |
+| The Green Mile                 | 1999 | Castle Rock Entertainment    | Burbank, California, USA                     |
+| The Maltese Falcon             | 1941 | Warner Bros. Pictures        | Burbank, California, USA                     |
+| The Shawshank Redemption       | 1994 | Castle Rock Entertainment    | Burbank, California, USA                     |
++--------------------------------+------+------------------------------+----------------------------------------------+
+15 rows in set (0.002 sec)
+
+MariaDB [movieindustry11b]> select M.title, M.year, S.name, S.address from movie M JOIN studio S ON M.studioname = S.name ORDER BY S.name DESC;
++--------------------------------+------+------------------------------+----------------------------------------------+
+| title                          | year | name                         | address                                      |
++--------------------------------+------+------------------------------+----------------------------------------------+
+| Casablanca                     | 1942 | Warner Bros. Pictures        | Burbank, California, USA                     |
+| Inception                      | 2010 | Warner Bros. Pictures        | Burbank, California, USA                     |
+| Mystic Rivers                  | 2003 | Warner Bros. Pictures        | Burbank, California, USA                     |
+| The Maltese Falcon             | 1941 | Warner Bros. Pictures        | Burbank, California, USA                     |
+| Apollo 13                      | 1995 | Universal Pictures           | Universal City, California, USA              |
+| Schindler List                 | 1993 | Universal Pictures           | Universal City, California, USA              |
+| Forrest Gump                   | 1994 | Paramount Pictures           | Hollywood, California, USA                   |
+| The Godfather                  | 1972 | Paramount Pictures           | Hollywood, California, USA                   |
+| The Godfather: Part II         | 1974 | Paramount Pictures           | Hollywood, California, USA                   |
+| Se7en                          | 1995 | New Line Cinema              | Robertson Blvd, Los Angeles, California, USA |
+| Pulp Fiction                   | 1994 | Miramax Films                | Cambridge, Massachusetts, USA                |
+| Milk                           | 2008 | Focus Features               | Oxford House, London, United Kingdom         |
+| The Green Mile                 | 1999 | Castle Rock Entertainment    | Burbank, California, USA                     |
+| The Shawshank Redemption       | 1994 | Castle Rock Entertainment    | Burbank, California, USA                     |
+| The Good, the Bad and the Ugly | 1966 | Arturo Gonzales Producciones | Spain                                        |
++--------------------------------+------+------------------------------+----------------------------------------------+
+15 rows in set (0.001 sec)
+
+MariaDB [movieindustry11b]> select M.title, M.year, S.name, S.address from movie M LEFT OUTER JOIN studio S ON M.studioname = S.name;
++--------------------------------+------+------------------------------+----------------------------------------------+
+| title                          | year | name                         | address                                      |
++--------------------------------+------+------------------------------+----------------------------------------------+
+| The Good, the Bad and the Ugly | 1966 | Arturo Gonzales Producciones | Spain                                        |
+| The Green Mile                 | 1999 | Castle Rock Entertainment    | Burbank, California, USA                     |
+| The Shawshank Redemption       | 1994 | Castle Rock Entertainment    | Burbank, California, USA                     |
+| Milk                           | 2008 | Focus Features               | Oxford House, London, United Kingdom         |
+| Pulp Fiction                   | 1994 | Miramax Films                | Cambridge, Massachusetts, USA                |
+| Se7en                          | 1995 | New Line Cinema              | Robertson Blvd, Los Angeles, California, USA |
+| Forrest Gump                   | 1994 | Paramount Pictures           | Hollywood, California, USA                   |
+| The Godfather                  | 1972 | Paramount Pictures           | Hollywood, California, USA                   |
+| The Godfather: Part II         | 1974 | Paramount Pictures           | Hollywood, California, USA                   |
+| Apollo 13                      | 1995 | Universal Pictures           | Universal City, California, USA              |
+| Schindler List                 | 1993 | Universal Pictures           | Universal City, California, USA              |
+| Casablanca                     | 1942 | Warner Bros. Pictures        | Burbank, California, USA                     |
+| Inception                      | 2010 | Warner Bros. Pictures        | Burbank, California, USA                     |
+| Mystic Rivers                  | 2003 | Warner Bros. Pictures        | Burbank, California, USA                     |
+| The Maltese Falcon             | 1941 | Warner Bros. Pictures        | Burbank, California, USA                     |
++--------------------------------+------+------------------------------+----------------------------------------------+
+15 rows in set (0.031 sec)
+
+MariaDB [movieindustry11b]> select M.title, M.year, S.name, S.address from movie M RIGHT OUTER JOIN studio S ON M.studioname = S.name;
++--------------------------------+------+------------------------------+----------------------------------------------+
+| title                          | year | name                         | address                                      |
++--------------------------------+------+------------------------------+----------------------------------------------+
+| The Good, the Bad and the Ugly | 1966 | Arturo Gonzales Producciones | Spain                                        |
+| The Green Mile                 | 1999 | Castle Rock Entertainment    | Burbank, California, USA                     |
+| The Shawshank Redemption       | 1994 | Castle Rock Entertainment    | Burbank, California, USA                     |
+| Milk                           | 2008 | Focus Features               | Oxford House, London, United Kingdom         |
+| Pulp Fiction                   | 1994 | Miramax Films                | Cambridge, Massachusetts, USA                |
+| Se7en                          | 1995 | New Line Cinema              | Robertson Blvd, Los Angeles, California, USA |
+| Forrest Gump                   | 1994 | Paramount Pictures           | Hollywood, California, USA                   |
+| The Godfather                  | 1972 | Paramount Pictures           | Hollywood, California, USA                   |
+| The Godfather: Part II         | 1974 | Paramount Pictures           | Hollywood, California, USA                   |
+| Apollo 13                      | 1995 | Universal Pictures           | Universal City, California, USA              |
+| Schindler List                 | 1993 | Universal Pictures           | Universal City, California, USA              |
+| Casablanca                     | 1942 | Warner Bros. Pictures        | Burbank, California, USA                     |
+| Inception                      | 2010 | Warner Bros. Pictures        | Burbank, California, USA                     |
+| Mystic Rivers                  | 2003 | Warner Bros. Pictures        | Burbank, California, USA                     |
+| The Maltese Falcon             | 1941 | Warner Bros. Pictures        | Burbank, California, USA                     |
++--------------------------------+------+------------------------------+----------------------------------------------+
+15 rows in set (0.001 sec)
+
+MariaDB [movieindustry11b]> select * from moviestar;
++-----------------------+-----------------------------------------+--------+------------+
+| name                  | birthplace                              | gender | birthdate  |
++-----------------------+-----------------------------------------+--------+------------+
+| Al Pacino             | New York City, New York, USA            | 1      | 0000-00-00 |
+| Ben Kingsley          | Scarborough, Yorkshire, England         | M      | 1943-12-31 |
+| Bob Gunton            | Santa Monica, California, USA           | 1      | 0000-00-00 |
+| Bonnie Hunt           | Chicago, Illinois, USA                  | F      | 1961-09-22 |
+| Brad Pitt             | Shawnee, Oklahoma, USA                  | M      | 1963-12-18 |
+| Bruce Willis          | Idar-Oberstein, West Germany            | M      | 1955-05-19 |
+| Cillian Murphy        | Douglas, Cork, Ireland                  | M      | 1976-05-25 |
+| Clancy Brown          | Urbanio, Ohio, USA                      | 1      | 0000-00-00 |
+| Clint Eastwood        | San Fransisco, California, USA          | M      | 1930-05-31 |
+| Diane Keaton          | Los Angeles, California, USA            | F      | 1946-01-05 |
+| Eli Wallach           | Brooklyn, New York, USA                 | M      | 1915-12-07 |
+| Ellen Page            | Halifax, Nova Scotia, Canada            | F      | 1987-02-21 |
+| Emile Hirsch          | Palms, California, USA                  | M      | 1985-03-13 |
+| Gary Sinise           | Blue Island, Illinois, USA              | M      | 1955-03-17 |
+| Gladys George         | Patten, Maine, USA                      | F      | 1900-09-13 |
+| Gwyneth Paltrow       | Los Angeles, California, USA            | F      | 1972-09-27 |
+| Humphrey Bogart       | New York City, New York, USA            | M      | 1899-12-25 |
+| Ingrid Bergman        | Stockholm, Sweden                       | F      | 1915-08-29 |
+| James Caan            | The Bronx, New York, USA                | 1      | 0000-00-00 |
+| James Cromwell        | Los Angeles, California, USA            | M      | 1940-01-27 |
+| James Franco          | Palo Alto, California, USA              | M      | 1978-04-19 |
+| John Travolta         | Englewood, New Jersey, USA              | M      | 1954-02-18 |
+| Joseph Gordon-Levitt  | Los Angeles, California, USA            | M      | 1981-02-17 |
+| Josh Brolin           | Los Angeles, California, USA            | M      | 1968-02-12 |
+| Kevin Bacon           | Philadelphia, Pennsylvania, USA         | M      | 1958-07-08 |
+| Laurence Fishburne    | Augusta, Georgia, USA                   | M      | 1961-07-30 |
+| Lee Van Cleef         | Somerville, New Jersey, USA             | M      | 1925-01-09 |
+| Leonardo DiCaprio     | Hollywood, California, USA              | M      | 1974-11-11 |
+| Liam Neeson           | Ballymena, Co. Antrim, Northern Ireland | M      | 1952-06-07 |
+| Marlon Brando         | Omaha, Nebraska, USA                    | 1      | 0000-00-00 |
+| Mary Astor            | Quincy, Illinois, USA                   | F      | 1906-05-03 |
+| Michael Clark Duncan  | Chicago, Illinois, USA                  | M      | 1957-12-10 |
+| Morgan Freeman        | Memphis, Tennessee, USA                 | 1      | 0000-00-00 |
+| Paul Henreid          | Trieste, Austria-Hungary                | M      | 1905-01-10 |
+| Peter Lorre           | Rozsahegy, Hungary, Austria-Hungary     | M      | 1904-06-26 |
+| Ralph Fiennes         | Ipswich, Suffolk, England               | M      | 1962-12-22 |
+| Richard S. Castellano | The Bronx, New York, USA                | M      | 1933-12-04 |
+| Robert De Niro        | New York City, New York, USA            | M      | 1943-08-17 |
+| Robert Duvall         | San Diego, California, USA              | M      | 1931-01-05 |
+| Robin Wright          | Dallas, Texas, USA                      | F      | 1966-04-08 |
+| Samuel L. Jackson     | Washington, District of Columbia, USA   | M      | 1948-12-21 |
+| Sean Penn             | Santa Monica, California, USA           | M      | 1960-08-17 |
+| Tim Robbins           | West Covina, California, USA            | 1      | 0000-00-00 |
+| Tom Hanks             | Concord, California, USA                | M      | 1956-07-09 |
+| Tom Hardy             | Hammersmith, London, England            | M      | 1977-09-17 |
+| William Sadler        | Buffalo, New York, USA                  | 1      | 0000-00-00 |
++-----------------------+-----------------------------------------+--------+------------+
+46 rows in set (0.001 sec)
+
+MariaDB [movieindustry11b]> select * from moviestar;
++-----------------------+-----------------------------------------+--------+------------+
+| name                  | birthplace                              | gender | birthdate  |
++-----------------------+-----------------------------------------+--------+------------+
+| Al Pacino             | New York City, New York, USA            | M      | 0000-00-00 |
+| Ben Kingsley          | Scarborough, Yorkshire, England         | M      | 1943-12-31 |
+| Bob Gunton            | Santa Monica, California, USA           | M      | 0000-00-00 |
+| Bonnie Hunt           | Chicago, Illinois, USA                  | F      | 1961-09-22 |
+| Brad Pitt             | Shawnee, Oklahoma, USA                  | M      | 1963-12-18 |
+| Bruce Willis          | Idar-Oberstein, West Germany            | M      | 1955-05-19 |
+| Cillian Murphy        | Douglas, Cork, Ireland                  | M      | 1976-05-25 |
+| Clancy Brown          | Urbanio, Ohio, USA                      | M      | 0000-00-00 |
+| Clint Eastwood        | San Fransisco, California, USA          | M      | 1930-05-31 |
+| Diane Keaton          | Los Angeles, California, USA            | F      | 1946-01-05 |
+| Eli Wallach           | Brooklyn, New York, USA                 | M      | 1915-12-07 |
+| Ellen Page            | Halifax, Nova Scotia, Canada            | F      | 1987-02-21 |
+| Emile Hirsch          | Palms, California, USA                  | M      | 1985-03-13 |
+| Gary Sinise           | Blue Island, Illinois, USA              | M      | 1955-03-17 |
+| Gladys George         | Patten, Maine, USA                      | F      | 1900-09-13 |
+| Gwyneth Paltrow       | Los Angeles, California, USA            | F      | 1972-09-27 |
+| Humphrey Bogart       | New York City, New York, USA            | M      | 1899-12-25 |
+| Ingrid Bergman        | Stockholm, Sweden                       | F      | 1915-08-29 |
+| James Caan            | The Bronx, New York, USA                | M      | 0000-00-00 |
+| James Cromwell        | Los Angeles, California, USA            | M      | 1940-01-27 |
+| James Franco          | Palo Alto, California, USA              | M      | 1978-04-19 |
+| John Travolta         | Englewood, New Jersey, USA              | M      | 1954-02-18 |
+| Joseph Gordon-Levitt  | Los Angeles, California, USA            | M      | 1981-02-17 |
+| Josh Brolin           | Los Angeles, California, USA            | M      | 1968-02-12 |
+| Kevin Bacon           | Philadelphia, Pennsylvania, USA         | M      | 1958-07-08 |
+| Laurence Fishburne    | Augusta, Georgia, USA                   | M      | 1961-07-30 |
+| Lee Van Cleef         | Somerville, New Jersey, USA             | M      | 1925-01-09 |
+| Leonardo DiCaprio     | Hollywood, California, USA              | M      | 1974-11-11 |
+| Liam Neeson           | Ballymena, Co. Antrim, Northern Ireland | M      | 1952-06-07 |
+| Marlon Brando         | Omaha, Nebraska, USA                    | M      | 0000-00-00 |
+| Mary Astor            | Quincy, Illinois, USA                   | F      | 1906-05-03 |
+| Michael Clark Duncan  | Chicago, Illinois, USA                  | M      | 1957-12-10 |
+| Morgan Freeman        | Memphis, Tennessee, USA                 | M      | 0000-00-00 |
+| Paul Henreid          | Trieste, Austria-Hungary                | M      | 1905-01-10 |
+| Peter Lorre           | Rozsahegy, Hungary, Austria-Hungary     | M      | 1904-06-26 |
+| Ralph Fiennes         | Ipswich, Suffolk, England               | M      | 1962-12-22 |
+| Richard S. Castellano | The Bronx, New York, USA                | M      | 1933-12-04 |
+| Robert De Niro        | New York City, New York, USA            | M      | 1943-08-17 |
+| Robert Duvall         | San Diego, California, USA              | M      | 1931-01-05 |
+| Robin Wright          | Dallas, Texas, USA                      | F      | 1966-04-08 |
+| Samuel L. Jackson     | Washington, District of Columbia, USA   | M      | 1948-12-21 |
+| Sean Penn             | Santa Monica, California, USA           | M      | 1960-08-17 |
+| Tim Robbins           | West Covina, California, USA            | M      | 0000-00-00 |
+| Tom Hanks             | Concord, California, USA                | M      | 1956-07-09 |
+| Tom Hardy             | Hammersmith, London, England            | M      | 1977-09-17 |
+| William Sadler        | Buffalo, New York, USA                  | M      | 0000-00-00 |
++-----------------------+-----------------------------------------+--------+------------+
+46 rows in set (0.001 sec)
+
+MariaDB [movieindustry11b]> select S.movietitle, S.starname, M.gender FROM starsin S INNER JOIN MovieStar M ON S.starname = M.name;
++--------------------------------+-----------------------+--------+
+| movietitle                     | starname              | gender |
++--------------------------------+-----------------------+--------+
+| Apollo 13                      | Gary Sinise           | M      |
+| Apollo 13                      | Kevin Bacon           | M      |
+| Apollo 13                      | Tom Hanks             | M      |
+| Casablanca                     | Humphrey Bogart       | M      |
+| Casablanca                     | Ingrid Bergman        | F      |
+| Casablanca                     | Paul Henreid          | M      |
+| Forrest Gump                   | Gary Sinise           | M      |
+| Forrest Gump                   | Robin Wright          | F      |
+| Forrest Gump                   | Tom Hanks             | M      |
+| Inception                      | Cillian Murphy        | M      |
+| Inception                      | Ellen Page            | F      |
+| Inception                      | Joseph Gordon-Levitt  | M      |
+| Inception                      | Leonardo DiCaprio     | M      |
+| Inception                      | Tom Hardy             | M      |
+| Milk                           | Emile Hirsch          | M      |
+| Milk                           | James Franco          | M      |
+| Milk                           | Sean Penn             | M      |
+| Mystic Rivers                  | Kevin Bacon           | M      |
+| Mystic Rivers                  | Laurence Fishburne    | M      |
+| Mystic Rivers                  | Sean Penn             | M      |
+| Mystic Rivers                  | Tim Robbins           | M      |
+| Pulp Fiction                   | Bruce Willis          | M      |
+| Pulp Fiction                   | John Travolta         | M      |
+| Pulp Fiction                   | Samuel L. Jackson     | M      |
+| Schindler List                 | Ben Kingsley          | M      |
+| Schindler List                 | Liam Neeson           | M      |
+| Schindler List                 | Ralph Fiennes         | M      |
+| Se7en                          | Brad Pitt             | M      |
+| Se7en                          | Gwyneth Paltrow       | F      |
+| Se7en                          | Morgan Freeman        | M      |
+| The Godfather                  | Al Pacino             | M      |
+| The Godfather                  | James Caan            | M      |
+| The Godfather                  | Marlon Brando         | M      |
+| The Godfather                  | Richard S. Castellano | M      |
+| The Godfather                  | Robert Duvall         | M      |
+| The Godfather: Part II         | Al Pacino             | M      |
+| The Godfather: Part II         | Diane Keaton          | F      |
+| The Godfather: Part II         | Robert De Niro        | M      |
+| The Godfather: Part II         | Robert Duvall         | M      |
+| The Good, the Bad and the Ugly | Clint Eastwood        | M      |
+| The Good, the Bad and the Ugly | Eli Wallach           | M      |
+| The Good, the Bad and the Ugly | Lee Van Cleef         | M      |
+| The Green Mile                 | Bonnie Hunt           | F      |
+| The Green Mile                 | James Cromwell        | M      |
+| The Green Mile                 | Michael Clark Duncan  | M      |
+| The Green Mile                 | Tom Hanks             | M      |
+| The Maltese Falcon             | Gladys George         | F      |
+| The Maltese Falcon             | Humphrey Bogart       | M      |
+| The Maltese Falcon             | Mary Astor            | F      |
+| The Maltese Falcon             | Peter Lorre           | M      |
+| The Shawshank Redemption       | Bob Gunton            | M      |
+| The Shawshank Redemption       | Clancy Brown          | M      |
+| The Shawshank Redemption       | Morgan Freeman        | M      |
+| The Shawshank Redemption       | Tim Robbins           | M      |
+| The Shawshank Redemption       | William Sadler        | M      |
++--------------------------------+-----------------------+--------+
+55 rows in set (0.002 sec)
+
+MariaDB [movieindustry11b]> select S.movietitle, S.starname, M.gender FROM starsin S LEFT OUTER JOIN MovieStar M ON S.starname = M.name;
++--------------------------------+-----------------------+--------+
+| movietitle                     | starname              | gender |
++--------------------------------+-----------------------+--------+
+| Apollo 13                      | Gary Sinise           | M      |
+| Apollo 13                      | Kevin Bacon           | M      |
+| Apollo 13                      | Tom Hanks             | M      |
+| Casablanca                     | Humphrey Bogart       | M      |
+| Casablanca                     | Ingrid Bergman        | F      |
+| Casablanca                     | Paul Henreid          | M      |
+| Forrest Gump                   | Gary Sinise           | M      |
+| Forrest Gump                   | Robin Wright          | F      |
+| Forrest Gump                   | Tom Hanks             | M      |
+| Inception                      | Cillian Murphy        | M      |
+| Inception                      | Ellen Page            | F      |
+| Inception                      | Joseph Gordon-Levitt  | M      |
+| Inception                      | Ken Watanabe          | NULL   |
+| Inception                      | Leonardo DiCaprio     | M      |
+| Inception                      | Tom Hardy             | M      |
+| Milk                           | Emile Hirsch          | M      |
+| Milk                           | James Franco          | M      |
+| Milk                           | Sean Penn             | M      |
+| Mystic Rivers                  | Kevin Bacon           | M      |
+| Mystic Rivers                  | Laurence Fishburne    | M      |
+| Mystic Rivers                  | Sean Penn             | M      |
+| Mystic Rivers                  | Tim Robbins           | M      |
+| Pulp Fiction                   | Bruce Willis          | M      |
+| Pulp Fiction                   | John Travolta         | M      |
+| Pulp Fiction                   | Samuel L. Jackson     | M      |
+| Pulp Fiction                   | Tim Roth              | NULL   |
+| Schindler List                 | Ben Kingsley          | M      |
+| Schindler List                 | Liam Neeson           | M      |
+| Schindler List                 | Ralph Fiennes         | M      |
+| Se7en                          | Brad Pitt             | M      |
+| Se7en                          | Gwyneth Paltrow       | F      |
+| Se7en                          | Morgan Freeman        | M      |
+| The Godfather                  | Al Pacino             | M      |
+| The Godfather                  | James Caan            | M      |
+| The Godfather                  | Marlon Brando         | M      |
+| The Godfather                  | Richard S. Castellano | M      |
+| The Godfather                  | Robert Duvall         | M      |
+| The Godfather: Part II         | Al Pacino             | M      |
+| The Godfather: Part II         | Diane Keaton          | F      |
+| The Godfather: Part II         | Robert De Niro        | M      |
+| The Godfather: Part II         | Robert Duvall         | M      |
+| The Good, the Bad and the Ugly | Clint Eastwood        | M      |
+| The Good, the Bad and the Ugly | Eli Wallach           | M      |
+| The Good, the Bad and the Ugly | Lee Van Cleef         | M      |
+| The Green Mile                 | Bonnie Hunt           | F      |
+| The Green Mile                 | James Cromwell        | M      |
+| The Green Mile                 | Michael Clark Duncan  | M      |
+| The Green Mile                 | Tom Hanks             | M      |
+| The Maltese Falcon             | Gladys George         | F      |
+| The Maltese Falcon             | Humphrey Bogart       | M      |
+| The Maltese Falcon             | Mary Astor            | F      |
+| The Maltese Falcon             | Peter Lorre           | M      |
+| The Shawshank Redemption       | Bob Gunton            | M      |
+| The Shawshank Redemption       | Clancy Brown          | M      |
+| The Shawshank Redemption       | Morgan Freeman        | M      |
+| The Shawshank Redemption       | Tim Robbins           | M      |
+| The Shawshank Redemption       | William Sadler        | M      |
++--------------------------------+-----------------------+--------+
+57 rows in set (0.002 sec)
+
+MariaDB [movieindustry11b]> select S.movietitle, S.starname, M.gender FROM starsin S RIGHT OUTER JOIN MovieStar M ON S.starname = M.name;
++--------------------------------+-----------------------+--------+
+| movietitle                     | starname              | gender |
++--------------------------------+-----------------------+--------+
+| Apollo 13                      | Gary Sinise           | M      |
+| Apollo 13                      | Kevin Bacon           | M      |
+| Apollo 13                      | Tom Hanks             | M      |
+| Casablanca                     | Humphrey Bogart       | M      |
+| Casablanca                     | Ingrid Bergman        | F      |
+| Casablanca                     | Paul Henreid          | M      |
+| Forrest Gump                   | Gary Sinise           | M      |
+| Forrest Gump                   | Robin Wright          | F      |
+| Forrest Gump                   | Tom Hanks             | M      |
+| Inception                      | Cillian Murphy        | M      |
+| Inception                      | Ellen Page            | F      |
+| Inception                      | Joseph Gordon-Levitt  | M      |
+| Inception                      | Leonardo DiCaprio     | M      |
+| Inception                      | Tom Hardy             | M      |
+| Milk                           | Emile Hirsch          | M      |
+| Milk                           | James Franco          | M      |
+| Milk                           | Sean Penn             | M      |
+| Mystic Rivers                  | Kevin Bacon           | M      |
+| Mystic Rivers                  | Laurence Fishburne    | M      |
+| Mystic Rivers                  | Sean Penn             | M      |
+| Mystic Rivers                  | Tim Robbins           | M      |
+| Pulp Fiction                   | Bruce Willis          | M      |
+| Pulp Fiction                   | John Travolta         | M      |
+| Pulp Fiction                   | Samuel L. Jackson     | M      |
+| Schindler List                 | Ben Kingsley          | M      |
+| Schindler List                 | Liam Neeson           | M      |
+| Schindler List                 | Ralph Fiennes         | M      |
+| Se7en                          | Brad Pitt             | M      |
+| Se7en                          | Gwyneth Paltrow       | F      |
+| Se7en                          | Morgan Freeman        | M      |
+| The Godfather                  | Al Pacino             | M      |
+| The Godfather                  | James Caan            | M      |
+| The Godfather                  | Marlon Brando         | M      |
+| The Godfather                  | Richard S. Castellano | M      |
+| The Godfather                  | Robert Duvall         | M      |
+| The Godfather: Part II         | Al Pacino             | M      |
+| The Godfather: Part II         | Diane Keaton          | F      |
+| The Godfather: Part II         | Robert De Niro        | M      |
+| The Godfather: Part II         | Robert Duvall         | M      |
+| The Good, the Bad and the Ugly | Clint Eastwood        | M      |
+| The Good, the Bad and the Ugly | Eli Wallach           | M      |
+| The Good, the Bad and the Ugly | Lee Van Cleef         | M      |
+| The Green Mile                 | Bonnie Hunt           | F      |
+| The Green Mile                 | James Cromwell        | M      |
+| The Green Mile                 | Michael Clark Duncan  | M      |
+| The Green Mile                 | Tom Hanks             | M      |
+| The Maltese Falcon             | Gladys George         | F      |
+| The Maltese Falcon             | Humphrey Bogart       | M      |
+| The Maltese Falcon             | Mary Astor            | F      |
+| The Maltese Falcon             | Peter Lorre           | M      |
+| The Shawshank Redemption       | Bob Gunton            | M      |
+| The Shawshank Redemption       | Clancy Brown          | M      |
+| The Shawshank Redemption       | Morgan Freeman        | M      |
+| The Shawshank Redemption       | Tim Robbins           | M      |
+| The Shawshank Redemption       | William Sadler        | M      |
+| NULL                           | NULL                  | M      |
++--------------------------------+-----------------------+--------+
+56 rows in set (0.002 sec)
+
+MariaDB [movieindustry11b]> select S.name, S.address, M.title FROM studio S JOIN movie M ON M.studioname= S.name AND address LIKE '%USA%';
++---------------------------+----------------------------------------------+--------------------------+
+| name                      | address                                      | title                    |
++---------------------------+----------------------------------------------+--------------------------+
+| Castle Rock Entertainment | Burbank, California, USA                     | The Green Mile           |
+| Castle Rock Entertainment | Burbank, California, USA                     | The Shawshank Redemption |
+| Miramax Films             | Cambridge, Massachusetts, USA                | Pulp Fiction             |
+| New Line Cinema           | Robertson Blvd, Los Angeles, California, USA | Se7en                    |
+| Paramount Pictures        | Hollywood, California, USA                   | Forrest Gump             |
+| Paramount Pictures        | Hollywood, California, USA                   | The Godfather            |
+| Paramount Pictures        | Hollywood, California, USA                   | The Godfather: Part II   |
+| Universal Pictures        | Universal City, California, USA              | Apollo 13                |
+| Universal Pictures        | Universal City, California, USA              | Schindler List           |
+| Warner Bros. Pictures     | Burbank, California, USA                     | Casablanca               |
+| Warner Bros. Pictures     | Burbank, California, USA                     | Inception                |
+| Warner Bros. Pictures     | Burbank, California, USA                     | Mystic Rivers            |
+| Warner Bros. Pictures     | Burbank, California, USA                     | The Maltese Falcon       |
++---------------------------+----------------------------------------------+--------------------------+
+13 rows in set (0.003 sec)
+
+MariaDB [movieindustry11b]> select S.name, S.address, AVG(M.length) FROM studio S INNER JOIN movie M ON M.studioname = S.name GROUP BY S.name;
++------------------------------+----------------------------------------------+---------------+
+| name                         | address                                      | AVG(M.length) |
++------------------------------+----------------------------------------------+---------------+
+| Arturo Gonzales Producciones | Spain                                        |      161.0000 |
+| Castle Rock Entertainment    | Burbank, California, USA                     |      165.5000 |
+| Focus Features               | Oxford House, London, United Kingdom         |      128.0000 |
+| Miramax Films                | Cambridge, Massachusetts, USA                |      154.0000 |
+| New Line Cinema              | Robertson Blvd, Los Angeles, California, USA |      127.0000 |
+| Paramount Pictures           | Hollywood, California, USA                   |      172.3333 |
+| Universal Pictures           | Universal City, California, USA              |      167.5000 |
+| Warner Bros. Pictures        | Burbank, California, USA                     |      122.2500 |
++------------------------------+----------------------------------------------+---------------+
+8 rows in set (0.001 sec)
+
+MariaDB [movieindustry11b]> select S.name, S.address, AVG(M.length) FROM studio S INNER JOIN movie M ON M.studioname = S.name AND address LIKE '%USA%' GROUP BY S.name;
++---------------------------+----------------------------------------------+---------------+
+| name                      | address                                      | AVG(M.length) |
++---------------------------+----------------------------------------------+---------------+
+| Castle Rock Entertainment | Burbank, California, USA                     |      165.5000 |
+| Miramax Films             | Cambridge, Massachusetts, USA                |      154.0000 |
+| New Line Cinema           | Robertson Blvd, Los Angeles, California, USA |      127.0000 |
+| Paramount Pictures        | Hollywood, California, USA                   |      172.3333 |
+| Universal Pictures        | Universal City, California, USA              |      167.5000 |
+| Warner Bros. Pictures     | Burbank, California, USA                     |      122.2500 |
++---------------------------+----------------------------------------------+---------------+
+6 rows in set (0.122 sec)
+
+MariaDB [movieindustry11b]> select S.name, S.address, AVG(M.length) FROM studio S INNER JOIN movie M ON M.studioname = S.name AND address LIKE '%USA%' GROUP BY S.name HAVING AVG(M.length)>150 ;
++---------------------------+---------------------------------+---------------+
+| name                      | address                         | AVG(M.length) |
++---------------------------+---------------------------------+---------------+
+| Castle Rock Entertainment | Burbank, California, USA        |      165.5000 |
+| Miramax Films             | Cambridge, Massachusetts, USA   |      154.0000 |
+| Paramount Pictures        | Hollywood, California, USA      |      172.3333 |
+| Universal Pictures        | Universal City, California, USA |      167.5000 |
++---------------------------+---------------------------------+---------------+
+4 rows in set (0.002 sec)
+
+MariaDB [movieindustry11b]> SELECT name, birthdate FROM moviestar WHERE gender='M' ORDER BY birthdate ASC;
++-----------------------+------------+
+| name                  | birthdate  |
++-----------------------+------------+
+| Marlon Brando         | 0000-00-00 |
+| Humphrey Bogart       | 1899-12-25 |
+| Peter Lorre           | 1904-06-26 |
+| Paul Henreid          | 1905-01-10 |
+| Eli Wallach           | 1915-12-07 |
+| Lee Van Cleef         | 1925-01-09 |
+| Clint Eastwood        | 1930-05-31 |
+| Robert Duvall         | 1931-01-05 |
+| Richard S. Castellano | 1933-12-04 |
+| Morgan Freeman        | 1937-06-01 |
+| James Cromwell        | 1940-01-27 |
+| James Caan            | 1940-03-26 |
+| Al Pacino             | 1940-04-25 |
+| Robert De Niro        | 1943-08-17 |
+| Ben Kingsley          | 1943-12-31 |
+| Bob Gunton            | 1945-11-15 |
+| Samuel L. Jackson     | 1948-12-21 |
+| William Sadler        | 1950-04-13 |
+| Liam Neeson           | 1952-06-07 |
+| John Travolta         | 1954-02-18 |
+| Gary Sinise           | 1955-03-17 |
+| Bruce Willis          | 1955-05-19 |
+| Tom Hanks             | 1956-07-09 |
+| Michael Clark Duncan  | 1957-12-10 |
+| Kevin Bacon           | 1958-07-08 |
+| Tim Robbins           | 1958-10-16 |
+| Clancy Brown          | 1959-01-05 |
+| Sean Penn             | 1960-08-17 |
+| Laurence Fishburne    | 1961-07-30 |
+| Ralph Fiennes         | 1962-12-22 |
+| Brad Pitt             | 1963-12-18 |
+| Josh Brolin           | 1968-02-12 |
+| Leonardo DiCaprio     | 1974-11-11 |
+| Cillian Murphy        | 1976-05-25 |
+| Tom Hardy             | 1977-09-17 |
+| James Franco          | 1978-04-19 |
+| Joseph Gordon-Levitt  | 1981-02-17 |
+| Emile Hirsch          | 1985-03-13 |
++-----------------------+------------+
+38 rows in set (0.001 sec)
+
+MariaDB [movieindustry11b]> SELECT name, birthdate FROM moviestar WHERE gender='F' ORDER BY birthdate ASC;
++-----------------+------------+
+| name            | birthdate  |
++-----------------+------------+
+| Gladys George   | 1900-09-13 |
+| Mary Astor      | 1906-05-03 |
+| Ingrid Bergman  | 1915-08-29 |
+| Diane Keaton    | 1946-01-05 |
+| Bonnie Hunt     | 1961-09-22 |
+| Robin Wright    | 1966-04-08 |
+| Gwyneth Paltrow | 1972-09-27 |
+| Ellen Page      | 1987-02-21 |
++-----------------+------------+
+8 rows in set (0.001 sec)
+
+MariaDB [movieindustry11b]> SELECT name, birthdate FROM moviestar WHERE gender='M' AND birthplace NOT LIKE '%USA%' ORDER BY birthdate ASC;
++----------------+------------+
+| name           | birthdate  |
++----------------+------------+
+| Peter Lorre    | 1904-06-26 |
+| Paul Henreid   | 1905-01-10 |
+| Ben Kingsley   | 1943-12-31 |
+| Liam Neeson    | 1952-06-07 |
+| Bruce Willis   | 1955-05-19 |
+| Ralph Fiennes  | 1962-12-22 |
+| Cillian Murphy | 1976-05-25 |
+| Tom Hardy      | 1977-09-17 |
++----------------+------------+
+8 rows in set (0.002 sec)
+
+MariaDB [movieindustry11b]> SELECT name, birthdate, birthplace FROM moviestar WHERE gender='M' AND birthplace NOT LIKE '%USA%' ORDER BY birthdate ASC;
++----------------+------------+-----------------------------------------+
+| name           | birthdate  | birthplace                              |
++----------------+------------+-----------------------------------------+
+| Peter Lorre    | 1904-06-26 | Rozsahegy, Hungary, Austria-Hungary     |
+| Paul Henreid   | 1905-01-10 | Trieste, Austria-Hungary                |
+| Ben Kingsley   | 1943-12-31 | Scarborough, Yorkshire, England         |
+| Liam Neeson    | 1952-06-07 | Ballymena, Co. Antrim, Northern Ireland |
+| Bruce Willis   | 1955-05-19 | Idar-Oberstein, West Germany            |
+| Ralph Fiennes  | 1962-12-22 | Ipswich, Suffolk, England               |
+| Cillian Murphy | 1976-05-25 | Douglas, Cork, Ireland                  |
+| Tom Hardy      | 1977-09-17 | Hammersmith, London, England            |
++----------------+------------+-----------------------------------------+
+8 rows in set (0.001 sec)
+
+MariaDB [movieindustry11b]> SELECT name, birthdate, birthplace FROM moviestar WHERE gender='M' AND birthplace NOT LIKE '%USA' ORDER BY birthdate ASC;
++----------------+------------+-----------------------------------------+
+| name           | birthdate  | birthplace                              |
++----------------+------------+-----------------------------------------+
+| Peter Lorre    | 1904-06-26 | Rozsahegy, Hungary, Austria-Hungary     |
+| Paul Henreid   | 1905-01-10 | Trieste, Austria-Hungary                |
+| Ben Kingsley   | 1943-12-31 | Scarborough, Yorkshire, England         |
+| Liam Neeson    | 1952-06-07 | Ballymena, Co. Antrim, Northern Ireland |
+| Bruce Willis   | 1955-05-19 | Idar-Oberstein, West Germany            |
+| Ralph Fiennes  | 1962-12-22 | Ipswich, Suffolk, England               |
+| Cillian Murphy | 1976-05-25 | Douglas, Cork, Ireland                  |
+| Tom Hardy      | 1977-09-17 | Hammersmith, London, England            |
++----------------+------------+-----------------------------------------+
+8 rows in set (0.002 sec)
+
+MariaDB [movieindustry11b]> 

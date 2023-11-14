@@ -1,0 +1,6 @@
+{
+    "require": {
+        "twig/twig": "^2.15",
+        "dompdf/dompdf": "^2.0"
+    }
+}

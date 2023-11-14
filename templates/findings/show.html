@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Findings Details</h1>
+<div class="findings">
+    <p><strong>Name Asset:</strong> {{ finding.asset_name }}</p>
+    <p><strong>Title:</strong> {{ finding.title }}</p>
+    <p><strong>Description:</strong> {{ finding.description }}</p>
+    <p><strong>Proof Of Concept:</strong> <a href="uploads/{{finding.proofOfConcept}}">{{ finding.proofOfConcept}}</a></p>
+    <p><strong>POC Video URL:</strong> <a href="{{finding.poc_video_url}}"> {{finding.poc_video_url}}</a></p>
+    <p><strong>Status:</strong> {{finding.status}}</p>
+
+</div>
+{% endblock %}
