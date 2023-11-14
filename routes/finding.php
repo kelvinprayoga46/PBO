@@ -34,7 +34,7 @@ if (isset($_GET['action'])) {
                     $result = $findings->insert($requests);
     
                     if ($result === true) {
-                        echo '<script>alert("Finding berhasil diinput."); window.location.href = "index.php?route=findings&action=list";</script>';
+                        echo '';
                     } else {
                         echo "Gagal membuat finding";
                     }
